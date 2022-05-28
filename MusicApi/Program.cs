@@ -1,4 +1,5 @@
 using MusicApi.Models;
+using MusicApi.Services;
 using Serilog;
 using Serilog.Events;
 
@@ -10,18 +11,26 @@ namespace MusicApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            #region SerilogConfig
             // Configure Serilog Logging.
             // Serilog provides structured API event logs that can be easily extended to any supported log consuming platforms such as Splunk, Prometheus, Console, File, GrayLog, S3 and even Email!
             // https://github.com/serilog/serilog/wiki/Provided-Sinks
             // Setting up logging to Console for now
             builder.Host.UseSerilog((ctx, lc) => lc
-                   .WriteTo.Console()); // Writing logs to Console
+                   .WriteTo.Console()); // Writing logs to Console 
+            #endregion
 
             // Add services to the container.
 
+            #region DBConfig
             // the configuration instance to which the appsettings.json file's MusicTracksDatabase section binds is registered in the Dependency Injection (DI) container. 
             builder.Services.Configure<MusicTracksDatabaseSettings>(
                 builder.Configuration.GetSection("MusicTracksDatabase"));
+
+            // The singleton service lifetime is most appropriate because TracksService takes a direct dependency on MongoClient.
+            // Per the official Mongo Client reuse guidelines, MongoClient should be registered in DI with a singleton service lifetime.
+            builder.Services.AddSingleton<TracksService>();
+            #endregion
 
             builder.Services.AddControllers();
             // Register ASP.Net Core Healthcheck Middleware for container liveness checks. Basic healthchecks not tied to any subsystems. Access at '/health'
