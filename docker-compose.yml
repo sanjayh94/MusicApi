@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  musictracksdb:
+    image: mongo
+  musicapi:
+    image: ${DOCKER_REGISTRY-}musicapi
+    build:
+      context: .
+      dockerfile: MusicApi/Dockerfile
+volumes:
+  mongo_data:
