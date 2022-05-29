@@ -5,6 +5,7 @@ using Newtonsoft.Json.Converters;
 
 namespace MusicApi.Models
 {
+    [BsonIgnoreExtraElements]    
     public class Track
     {
         // Required for mapping the Common Language Runtime (CLR) object to the MongoDB collection.
@@ -14,148 +15,149 @@ namespace MusicApi.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
 
-        [JsonProperty("id")]
+        [BsonElement("id")]
         public long TrackId { get; set; }
 
-        [JsonProperty("description")]
+        [BsonElement("description")]
         public string? Description { get; set; }
 
-        [JsonProperty("title")]
+        [BsonElement("title")]
         public string Title { get; set; }
 
-        [JsonProperty("duration")]
+        [BsonElement("duration")]
         public long? Duration { get; set; }
 
-        [JsonProperty("endKey")]
+        [BsonElement("endKey")]
         public string? EndKey { get; set; }
 
-        [JsonProperty("metre")]
+        [BsonElement("metre")]
         public string? Metre { get; set; }
 
-        [JsonProperty("startKey")]
+        [BsonElement("startKey")]
         public string? StartKey { get; set; }
 
-        [JsonProperty("endBpm")]
+        [BsonElement("endBpm")]
         public long EndBpm { get; set; }
 
-        [JsonProperty("startBpm")]
+        [BsonElement("startBpm")]
         public long StartBpm { get; set; }
 
-        [JsonProperty("tempo")]
+        [BsonElement("tempo")]
         public string? Tempo { get; set; }
 
-        [JsonProperty("isArrangement")]
+        [BsonElement("isArrangement")]
         public bool IsArrangement { get; set; }       
 
-        [JsonProperty("trackFact")]
+        [BsonElement("trackFact")]
         public string? TrackFact { get; set; }
 
-        [JsonProperty("albumTrackNumber")]
+        [BsonElement("albumTrackNumber")]
         public long AlbumTrackNumber { get; set; }
 
-        [JsonProperty("mix")]
+        [BsonElement("mix")]
         public long Mix { get; set; }
 
-        [JsonProperty("parentId")]
-        public long ParentId { get; set; }
+        [BsonElement("parentId")]
+        public long? ParentId { get; set; }
 
-        [JsonProperty("keywords")]
+        [BsonElement("keywords")]
         public string? Keywords { get; set; }
 
-        [JsonProperty("priorityOrder")]
+        [BsonElement("priorityOrder")]
         public long PriorityOrder { get; set; }
 
-        [JsonProperty("explicit")]
+        [BsonElement("explicit")]
         public bool Explicit { get; set; }
 
-        [JsonProperty("mixType")]
+        [BsonElement("mixType")]
         public string? MixType { get; set; }
 
-        [JsonProperty("mixVariation")]
+        [BsonElement("mixVariation")]
         public string? MixVariation { get; set; }
 
-        [JsonProperty("releaseDate")]
-        public DateTimeOffset ReleaseDate { get; set; }
+        [BsonElement("releaseDate")]
+        [BsonDateTimeOptions(DateOnly = true)]
+        public DateTime? ReleaseDate { get; set; }
 
-        [JsonProperty("releaseDateTimestamp")]
+        [BsonElement("releaseDateTimestamp")]
         public double ReleaseDateTimestamp { get; set; }
 
-        [JsonProperty("isrc")]
+        [BsonElement("isrc")]
         public string? Isrc { get; set; }
 
-        [JsonProperty("album")]
+        [BsonElement("album")]
         public Album? Album { get; set; }
 
-        [JsonProperty("composers")]
+        [BsonElement("composers")]
         public List<Composer>? Composers { get; set; }
 
-        [JsonProperty("publishers")]
+        [BsonElement("publishers")]
         public List<Publisher>? Publishers { get; set; }
 
-        [JsonProperty("mixCount")]
+        [BsonElement("mixCount")]
         public long MixCount { get; set; }
 
-        [JsonProperty("relatedCount")]
+        [BsonElement("relatedCount")]
         public long RelatedCount { get; set; }
        
-        [JsonProperty("previewUrl")]
+        [BsonElement("previewUrl")]
         public Uri? PreviewUrl { get; set; }
     }
 
     public class Album
     {
-        [JsonProperty("number")]
+        [BsonElement("number")]
         public long Number { get; set; }
 
-        [JsonProperty("description")]
+        [BsonElement("description")]
         public string? Description { get; set; }
 
-        [JsonProperty("name")]
+        [BsonElement("name")]
         public string Name { get; set; }
 
-        [JsonProperty("pillar")]
+        [BsonElement("pillar")]
         public string? Pillar { get; set; }
 
-        [JsonProperty("mainMixTrackCount")]
+        [BsonElement("mainMixTrackCount")]
         public long MainMixTrackCount { get; set; }
 
-        [JsonProperty("trackCount")]
+        [BsonElement("trackCount")]
         public long TrackCount { get; set; }
     }
-
+ 
     public class Composer
     {
-        [JsonProperty("id")]
-        public long Id { get; set; }
+        [BsonElement("id")]
+        public long? ComposerId { get; set; }
 
-        [JsonProperty("collectionSociety")]
+        [BsonElement("collectionSociety")]
         public string? CollectionSociety { get; set; }
 
-        [JsonProperty("firstName")]
+        [BsonElement("firstName")]
         public string? FirstName { get; set; }
 
-        [JsonProperty("lastName")]
+        [BsonElement("lastName")]
         public string? LastName { get; set; }
 
-        [JsonProperty("ipi")]
+        [BsonElement("ipi")]
         public string? Ipi { get; set; }
 
-        [JsonProperty("name")]
+        [BsonElement("name")]
         public string? Name { get; set; }
     }
-
+    
     public class Publisher
     {
-        [JsonProperty("id")]
-        public long Id { get; set; }
+        [BsonElement("id")]
+        public long PublisherId { get; set; }
 
-        [JsonProperty("name")]
+        [BsonElement("name")]
         public string? Name { get; set; }
 
-        [JsonProperty("ipi")]
+        [BsonElement("ipi")]
         public string? Ipi { get; set; }
 
-        [JsonProperty("collectionSociety")]
+        [BsonElement("collectionSociety")]
         public string? CollectionSociety { get; set; }
     }
 }
