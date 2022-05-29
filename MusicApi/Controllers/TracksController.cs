@@ -40,5 +40,26 @@ namespace MusicApi.Controllers
 
             return track;
         }
+
+        [HttpGet("search/{word}")]
+        public async Task<ActionResult<Track>> FindTracksByWord(string word)
+        {
+            List<Track>? tracks = await _tracksService.ListByWordAsync(word);
+
+            if (tracks.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(tracks);
+        }
+
+        [HttpGet("count/{word}")]
+        public async Task<ActionResult<Track>> GetTrackCountByWord(string word)
+        {
+            long tracks = await _tracksService.GetTrackCountByWord(word);
+
+            return Ok($"{{\"count\":{tracks}}}");
+        }
     }
 }
