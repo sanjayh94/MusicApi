@@ -40,7 +40,7 @@ namespace MusicApi.Services
 
         public async Task<long> GetTrackCountByWord(string word)
         {
-            FilterDefinition<Track> filter = Builders<Track>.Filter.Where(s => s.Title!.Contains(word));
+            FilterDefinition<Track> filter = Builders<Track>.Filter.Where(s => s.Title!.ToLower().Contains(word));
             var count = await _tracksCollection.CountDocumentsAsync(filter);
 
             return count;
@@ -48,7 +48,7 @@ namespace MusicApi.Services
 
         public async Task<List<Track>> ListByWordAsync(string word)
         {
-            FilterDefinition<Track> filter = Builders<Track>.Filter.Where(s => s.Title!.Contains(word));
+            FilterDefinition<Track> filter = Builders<Track>.Filter.Where(s => s.Title!.ToLower().Contains(word));
             List<Track> results = await _tracksCollection.Find(filter).ToListAsync();
 
             return results;
