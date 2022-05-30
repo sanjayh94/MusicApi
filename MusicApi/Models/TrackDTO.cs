@@ -41,26 +41,5 @@ namespace MusicApi.Models
 
             return track;
         }
-
-        //public static implicit operator List<TrackDTO>(List<Track> v)
-        //{
-        //    var track = new List<TrackDTO>();
-
-        //    track = v.Select(x => new TrackDTO() 
-        //    {
-        //        Id = x.Id,
-        //        Description = x.Description,
-        //        Title = x.Title,
-        //        Keywords = x.Keywords,
-        //        Explicit = x.Explicit,
-        //        ReleaseDate = x.ReleaseDate,
-        //        Album = x.Album,
-        //        Composers = x.Composers,
-        //        Publishers = x.Publishers
-
-        //    }).ToList();
-
-        //    return track;
-        //}
-    }
+    }  
 }

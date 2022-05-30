@@ -28,29 +28,22 @@ namespace MusicApi.Models
                 musicTracksDatabaseSettings.Value.TracksCollectionName);
             #endregion
 
-            var tracks = FetchAllTracksFromApiAsync(apiKey, logger).Result;
+            var tracks = await FetchAllTracksFromApiAsync(apiKey, logger);
 
-            //var filter = Builders<Track>.Filter.Empty;
-            //var update = Builders<Track>.Update.;
-            //tracksCollection.UpdateManyAsync(filter, tracks);
-
-            //await tracksCollection.InsertManyAsync(tracks);           
-            //await tracksCollection.UpdateManyAsync(filter, ,new UpdateOptions() { IsUpsert = true }); 
-
-            // TODO: Modify the update so it can do Upserts. Currently it only replaces and doesn't update
             try
             {
                 if (tracks is not null)
-                {
-                    var updates = new List<WriteModel<Track>>();
-                    foreach (var doc in tracks)
+                {                  
+                    var bulkOps = new List<WriteModel<Track>>();
+                    foreach (var record in tracks)
                     {
-                        FilterDefinition<Track> filter = Builders<Track>.Filter.Where(x => x.Id == doc.Id);
-                        FieldDefinition<Track> field = "id";
-                        UpdateDefinition<Track> update = Builders<Track>.Update.AddToSet(field, doc);
-                        updates.Add(new UpdateOneModel<Track>(filter, update));
+                        var upsertOne = new ReplaceOneModel<Track>(
+                            Builders<Track>.Filter.Where(x => x.Id == record.Id),
+                            record)
+                        { IsUpsert = true };
+                        bulkOps.Add(upsertOne);
                     }
-                    await tracksCollection.BulkWriteAsync(updates, new BulkWriteOptions() { IsOrdered = false });
+                    tracksCollection.BulkWrite(bulkOps);
 
                     logger.LogInformation("DB Seeding complete");
                 }
