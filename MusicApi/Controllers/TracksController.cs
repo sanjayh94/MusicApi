@@ -44,6 +44,11 @@ namespace MusicApi.Controllers
         [HttpGet("search/{word}")]
         public async Task<ActionResult<TrackDTO>> FindTracksByWord(string word)
         {
+            if (!string.IsNullOrWhiteSpace(word))
+            {
+                return BadRequest();
+            }
+
             List<TrackDTO>? tracks = await _tracksService.ListByWordAsync(word);
 
             if (tracks.Count == 0)
@@ -57,6 +62,11 @@ namespace MusicApi.Controllers
         [HttpGet("count/{word}")]
         public async Task<ActionResult<TrackDTO>> GetTrackCountByWord(string word)
         {
+            if (!string.IsNullOrWhiteSpace(word))
+            {
+                return BadRequest();
+            }
+
             long tracks = await _tracksService.GetTrackCountByWord(word);
 
             return Ok($"{{\"count\":{tracks}}}");
