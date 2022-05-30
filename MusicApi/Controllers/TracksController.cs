@@ -23,13 +23,13 @@ namespace MusicApi.Controllers
         #endregion
 
         [HttpGet]
-        public async Task<List<Track>> Get()
+        public async Task<List<TrackDTO>> Get()
         {
             return await _tracksService.GetAsync();
         }
 
         [HttpGet("{id}")] 
-        public async Task<ActionResult<Track>> Get(long id)
+        public async Task<ActionResult<TrackDTO>> Get(long id)
         {
             var track = await _tracksService.GetAsync(id);
 
@@ -42,9 +42,9 @@ namespace MusicApi.Controllers
         }
 
         [HttpGet("search/{word}")]
-        public async Task<ActionResult<Track>> FindTracksByWord(string word)
+        public async Task<ActionResult<TrackDTO>> FindTracksByWord(string word)
         {
-            List<Track>? tracks = await _tracksService.ListByWordAsync(word);
+            List<TrackDTO>? tracks = await _tracksService.ListByWordAsync(word);
 
             if (tracks.Count == 0)
             {
@@ -55,7 +55,7 @@ namespace MusicApi.Controllers
         }
 
         [HttpGet("count/{word}")]
-        public async Task<ActionResult<Track>> GetTrackCountByWord(string word)
+        public async Task<ActionResult<TrackDTO>> GetTrackCountByWord(string word)
         {
             long tracks = await _tracksService.GetTrackCountByWord(word);
 

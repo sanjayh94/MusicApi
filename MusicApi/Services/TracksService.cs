@@ -28,14 +28,18 @@ namespace MusicApi.Services
             _logger = logger;
         }
 
-        public async Task<List<Track>> GetAsync()
+        public async Task<List<TrackDTO>> GetAsync()
         {
-            return await _tracksCollection.Find(_ => true).ToListAsync();
+            var tracks = await _tracksCollection.Find(_ => true).ToListAsync();
+            var tracksDto = tracks.ConvertAll(x => (TrackDTO)x);
+            return tracksDto;
         }
 
-        public async Task<Track?> GetAsync(long id)
+        public async Task<TrackDTO?> GetAsync(long id)
         {
-            return await _tracksCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            var track = new TrackDTO();
+            track = await _tracksCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            return track;
         }
 
         public async Task<long> GetTrackCountByWord(string word)
@@ -46,12 +50,13 @@ namespace MusicApi.Services
             return count;
         }
 
-        public async Task<List<Track>> ListByWordAsync(string word)
+        public async Task<List<TrackDTO>> ListByWordAsync(string word)
         {
             FilterDefinition<Track> filter = Builders<Track>.Filter.Where(s => s.Title!.ToLower().Contains(word));
             List<Track> results = await _tracksCollection.Find(filter).ToListAsync();
 
-            return results;
+            var resultsDto = results.ConvertAll(x => (TrackDTO)x);
+            return resultsDto;
         }
     }
 }

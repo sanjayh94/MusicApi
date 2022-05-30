@@ -10,8 +10,6 @@ namespace MusicApi.Models
     {
         public static async void Initialise(IServiceProvider serviceProvider)
         {
-            // TODO: Add logging
-            // Initialise(IOptions<MusicTracksDatabaseSettings> musicTracksDatabaseSettings, ILogger logger)
             IConfiguration config = serviceProvider.GetRequiredService<IConfiguration>();
             var apiKey = config.GetValue<string>("AudioNetworkApiKey");
 
@@ -39,6 +37,7 @@ namespace MusicApi.Models
             //await tracksCollection.InsertManyAsync(tracks);           
             //await tracksCollection.UpdateManyAsync(filter, ,new UpdateOptions() { IsUpsert = true }); 
 
+            // TODO: Modify the update so it can do Upserts. Currently it only replaces and doesn't update
             try
             {
                 if (tracks is not null)
