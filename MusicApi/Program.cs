@@ -22,6 +22,7 @@ namespace MusicApi
             #endregion
 
             // Add services to the container.
+            builder.Services.AddHttpClient(); // Register IHttpClientFactory by calling AddHttpClient to make API calls using DI.
 
             #region DBConfig
             // the configuration instance to which the appsettings.json file's MusicTracksDatabase section binds is registered in the Dependency Injection (DI) container. 
@@ -44,6 +45,16 @@ namespace MusicApi
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            #region SeedDB            
+            // Seed Database using the Audio Network API when application starts
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                SeedData.Initialise(services);
+            } 
+            #endregion
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

@@ -11,18 +11,19 @@ namespace MusicApi.Models
         // Required for mapping the Common Language Runtime (CLR) object to the MongoDB collection.
         // Annotated with [BsonId] to make this property the document's primary key.
         // Annotated with [BsonRepresentation(BsonType.ObjectId)] to allow passing the parameter as type string instead of an ObjectId structure. Mongo handles the conversion from string to ObjectId.
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
+        //[BsonId]
+        //[BsonRepresentation(BsonType.ObjectId)]
+        //public string? Id { get; set; }
 
         [BsonElement("id")]
-        public long TrackId { get; set; }
+        [BsonId]
+        public long Id { get; set; }
 
         [BsonElement("description")]
         public string? Description { get; set; }
 
         [BsonElement("title")]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         [BsonElement("duration")]
         public long? Duration { get; set; }
@@ -37,25 +38,25 @@ namespace MusicApi.Models
         public string? StartKey { get; set; }
 
         [BsonElement("endBpm")]
-        public long EndBpm { get; set; }
+        public long? EndBpm { get; set; }
 
         [BsonElement("startBpm")]
-        public long StartBpm { get; set; }
+        public long? StartBpm { get; set; }
 
         [BsonElement("tempo")]
         public string? Tempo { get; set; }
 
         [BsonElement("isArrangement")]
-        public bool IsArrangement { get; set; }       
+        public bool? IsArrangement { get; set; }       
 
         [BsonElement("trackFact")]
         public string? TrackFact { get; set; }
 
         [BsonElement("albumTrackNumber")]
-        public long AlbumTrackNumber { get; set; }
+        public long? AlbumTrackNumber { get; set; }
 
         [BsonElement("mix")]
-        public long Mix { get; set; }
+        public long? Mix { get; set; }
 
         [BsonElement("parentId")]
         public long? ParentId { get; set; }
@@ -64,10 +65,10 @@ namespace MusicApi.Models
         public string? Keywords { get; set; }
 
         [BsonElement("priorityOrder")]
-        public long PriorityOrder { get; set; }
+        public long? PriorityOrder { get; set; }
 
         [BsonElement("explicit")]
-        public bool Explicit { get; set; }
+        public bool? Explicit { get; set; }
 
         [BsonElement("mixType")]
         public string? MixType { get; set; }
@@ -80,7 +81,7 @@ namespace MusicApi.Models
         public DateTime? ReleaseDate { get; set; }
 
         [BsonElement("releaseDateTimestamp")]
-        public double ReleaseDateTimestamp { get; set; }
+        public double? ReleaseDateTimestamp { get; set; }
 
         [BsonElement("isrc")]
         public string? Isrc { get; set; }
@@ -95,10 +96,10 @@ namespace MusicApi.Models
         public List<Publisher>? Publishers { get; set; }
 
         [BsonElement("mixCount")]
-        public long MixCount { get; set; }
+        public long? MixCount { get; set; }
 
         [BsonElement("relatedCount")]
-        public long RelatedCount { get; set; }
+        public long? RelatedCount { get; set; }
        
         [BsonElement("previewUrl")]
         public Uri? PreviewUrl { get; set; }
@@ -107,22 +108,22 @@ namespace MusicApi.Models
     public class Album
     {
         [BsonElement("number")]
-        public long Number { get; set; }
+        public long? Number { get; set; }
 
         [BsonElement("description")]
         public string? Description { get; set; }
 
         [BsonElement("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [BsonElement("pillar")]
         public string? Pillar { get; set; }
 
         [BsonElement("mainMixTrackCount")]
-        public long MainMixTrackCount { get; set; }
+        public long? MainMixTrackCount { get; set; }
 
         [BsonElement("trackCount")]
-        public long TrackCount { get; set; }
+        public long? TrackCount { get; set; }
     }
  
     public class Composer
@@ -149,7 +150,7 @@ namespace MusicApi.Models
     public class Publisher
     {
         [BsonElement("id")]
-        public long PublisherId { get; set; }
+        public long? PublisherId { get; set; }
 
         [BsonElement("name")]
         public string? Name { get; set; }

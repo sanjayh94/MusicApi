@@ -35,7 +35,7 @@ namespace MusicApi.Services
 
         public async Task<Track?> GetAsync(long id)
         {
-            return await _tracksCollection.Find(x => x.TrackId == id).FirstOrDefaultAsync();
+            return await _tracksCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
         }
 
         public async Task<long> GetTrackCountByWord(string word)
