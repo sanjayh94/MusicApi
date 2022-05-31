@@ -27,8 +27,4 @@
     <ProjectReference Include="..\MusicApi\MusicApi.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>
