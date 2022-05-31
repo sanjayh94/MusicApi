@@ -13,7 +13,7 @@ namespace MusicApi.Tests
     {
         #region PrivateVariables
         private readonly Mock<ILogger<TracksController>> loggerStub = new(); // Mock Stub of logger dependency
-        private readonly Mock<ITracksService> tracksServiceStub = new(); // Mock Stub of pokemonService dependency
+        private readonly Mock<ITracksService> tracksServiceStub = new(); // Mock Stub of tracksService dependency
         #endregion
        
         [Fact]
