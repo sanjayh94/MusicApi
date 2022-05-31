@@ -12,6 +12,14 @@ namespace MusicApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Load secrets.json into app configuration
+            builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                config.AddJsonFile("secrets.json",
+                                   optional: false,
+                                   reloadOnChange: true);
+            });
+
             #region SerilogConfig
             // Configure Serilog Logging.
             // Serilog provides structured API event logs that can be easily extended to any supported log consuming platforms such as Splunk, Prometheus, Console, File, GrayLog, S3 and even Email!
