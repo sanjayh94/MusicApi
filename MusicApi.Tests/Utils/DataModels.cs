@@ -32,6 +32,11 @@ namespace MusicApi.Tests.Utils
             return tracks;
         }
 
+        /// <summary>
+        /// Used for Tracks Mock data.
+        /// Static method that Loads json from sampledata.json and return a List<TrackDTO> object
+        /// </summary>
+        /// <returns>List<TrackDTO> object</returns>
         public static List<TrackDTO> GetSampleTracksDtoList()
         {
    

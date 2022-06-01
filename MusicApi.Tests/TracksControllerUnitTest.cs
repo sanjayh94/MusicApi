@@ -9,6 +9,9 @@ using MusicApi.Tests.Utils;
 
 namespace MusicApi.Tests
 {
+    /// <summary>
+    /// Class with methods to Unit test TracksController. Uses XUnit for Unit testing, Moq library for Mocks and FluentAssertions for assertions.
+    /// </summary>
     public class TracksControllerUnitTest
     {
         #region PrivateVariables
@@ -16,6 +19,9 @@ namespace MusicApi.Tests
         private readonly Mock<ITracksService> tracksServiceStub = new(); // Mock Stub of tracksService dependency
         #endregion
        
+        /// <summary>
+        /// Unit test that tests the FindTracksByWord() method with expected string. Should return expected result
+        /// </summary>
         [Fact]
         public void FindTracksByWord_WithExpectedWord_ReturnsExpectedResult()
         {
@@ -32,7 +38,9 @@ namespace MusicApi.Tests
             actionResult.Result.Should().BeOfType<ActionResult<TrackDTO>>();
         }
 
-
+        /// <summary>
+        /// Unit test that tests the FindTracksByWord() method with expected string. Should return status code 200
+        /// </summary>
         [Fact]
         public void FindTracksByWord_WithExpectedWord_ReturnsOk()
         {
@@ -51,6 +59,9 @@ namespace MusicApi.Tests
             actionResult.Result.Should().BeEquivalentTo(actionResultShouldbe);
         }
 
+        /// <summary>
+        /// Unit test that tests the FindTracksByWord() method with word that does not exist in title. Should return 404 Not Found
+        /// </summary>
         [Fact]
         public void FindTracksByWord_WithNonExistentWord_ReturnsNotFound()
         {
@@ -69,6 +80,9 @@ namespace MusicApi.Tests
             actionResult.Result.Should().BeEquivalentTo(actionResultShouldbe);
         }
 
+        /// <summary>
+        /// Unit test that tests the FindTracksByWord() method with space in input. Should return Bad Request
+        /// </summary>
         [Fact]
         public void FindTracksByWord_WithSpace_ReturnsBadRequest()
         {
@@ -87,7 +101,9 @@ namespace MusicApi.Tests
             actionResult.Result.Should().BeEquivalentTo(actionResultShouldbe);
 
         }
-
+        /// <summary>
+        /// Unit test that tests the GetTrackCountByWord() method with expected string. Should return expected result
+        /// </summary>
         [Fact]
         public void GetTrackCountByWord_WithExpectedWord_ReturnsExpectedResult()
         {
@@ -105,6 +121,9 @@ namespace MusicApi.Tests
             actionResult.Result.Should().BeOfType<ActionResult<TrackDTO>>();
         }
 
+        /// <summary>
+        /// Unit test that tests the GetTrackCountByWord() method with word that does not exist in title. Should return 404 Not Found
+        /// </summary>
         [Fact]
         public void GetTrackCountByWord_WithNonExistentWord_ReturnsNotFound()
         {
@@ -122,6 +141,9 @@ namespace MusicApi.Tests
             actionResult.Result.Should().BeEquivalentTo(actionResultShouldbe);
         }
 
+        /// <summary>
+        /// Unit test that tests the GetTrackCountByWord() method with space in input. Should return Bad Request
+        /// </summary>
         [Fact]
         public void GetTrackCountByWord_WithSpace_ReturnsBadRequest()
         {

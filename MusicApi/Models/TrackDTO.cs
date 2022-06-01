@@ -2,6 +2,10 @@
 
 namespace MusicApi.Models
 {
+    /// <summary>
+    ///  Model Data class for Data Transfer Object. This is the class used to send final data to User.
+    ///  DTO classes can be used to select which data to send to the User. Useful for concealing data not meant for the user.
+    /// </summary>
     public class TrackDTO
     {
         [JsonProperty("id")]
@@ -25,7 +29,9 @@ namespace MusicApi.Models
         [JsonProperty("album")]
         public Album? Album { get; set; }
 
-
+        /// <summary>
+        /// Method to do implicit object conversions from Track Class to TrackDTO Class
+        /// </summary>        
         public static implicit operator TrackDTO(Track v)
         {
             var track = new TrackDTO

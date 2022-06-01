@@ -1,10 +1,11 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace MusicApi.Models
 {
+    /// <summary>
+    /// Model class for interfacing with MongoDB Database. BSON is a binary representation of JSON, Serialised by MongoDB Driver
+    /// </summary>
     [BsonIgnoreExtraElements]    
     public class Track
     {

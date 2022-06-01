@@ -67,6 +67,7 @@ namespace MusicApi
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                // Use swagger Page if Development
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
