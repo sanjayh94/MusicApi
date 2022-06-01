@@ -191,3 +191,17 @@ Run the project using any of the methods above, and then use your preferred API 
     }, ...
   ```
   
+## Running Tests
+
+The project consists of a number of Unit Tests. Unit tests test methods in isolation of dependencies.
+
+### Using Visual Studio (or VSCode)
+![Running Tests in Visual Studio](https://user-images.githubusercontent.com/94787187/171515789-f285677e-8ab6-4e3c-aa94-8bbf82d21daf.png)
+
+1. Open the solution in Visual Studio
+2. Open the Test Explorer window/tab and hit the Run Tests button
+
+### Using dotnet CLI
+1. Make sure .NET CLI is installed from the previous steps
+2. Open your preferred terminal and Navigate to the directory where you cloned the repo earlier. For example `cd ~/repos/MusicApi/MusicApi.Tests`
+3. Run the command `dotnet test`
