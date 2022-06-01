@@ -2,13 +2,14 @@
 A MusicApi Web API application built using the .NET 6 Web API framework and MongoDB that retrieves a list of tracks for a given word using the Audio Network API.
 
 ## Architecture Diagram
-(insert diagram here)
+
+![MusicApi Architecture Diagram](https://user-images.githubusercontent.com/94787187/171513277-95abba35-9cc4-4a3d-8464-8efcd22dcd96.png)
 
 ## Considerations and Assumptions
 
 + The application is built using a persistance layer (MongoDB) for a fast response time. Another approach can include Redis for caching or persistance.
-+ The application works with only 500 music tracks and returns only a subset of the Track record to keep things simple and small. However, the application is built to be scalable.
-+ The application seeds the Database on Application startup. The assumption is that on production there will be a seperate scheduled or cronjob service to keep the Database updated. This is designed to keep it simple and easy to run.
++ The application only loads 500 music tracks and returns only a subset of the Track record to keep things simple and small. However, the application is built to be scalable.
++ The application seeds the Database on Application startup. This is designed to keep it simple and easy to run. The assumption is that on production there will be a seperate scheduled or cronjob service to keep the Database updated. 
 + The overall goal was to keep it simple, but feel free to ask questions regarding the application architecture or approach.
 
 ## How to Run
@@ -48,7 +49,7 @@ I personally used Visual Studio to develop, test and run the project, but there 
 6. Navigate to the root of the repo `cd ~/repos/MusicApi`.
 7. Build the images `docker-compose build`
 8. Run the application `docker-compose up`
-9. The application will be taking requests at `http:\\localhost:5000`
+9. The application will be taking requests at `http://localhost:5000`
 
 
 ### Setting up MongoDB Server
