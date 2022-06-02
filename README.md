@@ -1,5 +1,5 @@
 # MusicApi
-A MusicApi Web API application built using the .NET 6 Web API framework and MongoDB that retrieves a list of tracks for a given word using the Audio Network API.
+A MusicApi Web API application built using the .NET 6 Web API framework and MongoDB that aggregates music data using the Audio Network API.
 
 ## Architecture Diagram
 
@@ -9,7 +9,7 @@ A MusicApi Web API application built using the .NET 6 Web API framework and Mong
 
 + The application is built using a persistance layer (MongoDB) for a fast response time. Another approach can include Redis for caching or persistance.
 + The application only loads 500 music tracks and returns only a subset of the Track record to keep things simple and small. However, the application is built to be scalable.
-+ The application seeds the Database on Application startup. This is designed to keep it simple and easy to run. The assumption is that on production there will be a seperate scheduled or cronjob service to keep the Database updated. 
++ The application seeds and updates the Database on Application startup. This is designed to keep it simple and easy to run. The assumption is that on production there will be a seperate scheduled or cronjob service to keep the Database updated. 
 + The overall goal was to keep it simple, but feel free to ask questions regarding the application architecture or approach.
 
 ## How to Run
